@@ -1,43 +1,48 @@
-import express from "express"
-import cors from "cors"
-import { connectDB } from "./config/db.js"
-import foodRouter from "./routes/foodRoute.js"
-import userRouter from "./routes/userRoute.js"
-import "dotenv/config"
-import cartRouter from "./routes/cartRoute.js"
-import orderRouter from "./routes/orderRoute.js"
+import express from "express";
+import cors from "cors";
+import { connectDB } from "./config/db.js";
+import foodRouter from "./routes/foodRoute.js";
+import userRouter from "./routes/userRoute.js";
+import cartRouter from "./routes/cartRoute.js";
+import orderRouter from "./routes/orderRoute.js";
+import "dotenv/config";
+import path from "path";
+import { fileURLToPath } from "url";
 
+// App config
+const app = express();
+const port = process.env.PORT || 4000;
 
-//app config
-const app=express()
-const port=4000
+// ES module fix for __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-//middleware
-app.use(express.json())
-app.use(cors())
-//db connection 
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// DB connection
 connectDB();
 
-// api endpoints
-app.use("/api/food",foodRouter)
-app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter)
-app.use("/api/cart",cartRouter)
-app.use("/api/order",orderRouter)
+// API endpoints
+app.use("/api/food", foodRouter);
+app.use("/images", express.static("uploads"));
+app.use("/api/user", userRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
-app.get("/",(req,res)=>{
-res.send("API Working")
-})
+// Root test endpoint
+app.get("/api", (req, res) => {
+  res.send("API Working");
+});
 
+// Serve frontend build
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+});
 
-app.listen(port,()=>{
-    console.log(`Server Started on http://localhost:${port}`)
-})
-
-// mongodb+srv://shruti:shruti09dec@cluster0.hl42elw.mongodb.net/?
-
-const path = require('path');
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+// Start server
+app.listen(port, () => {
+  console.log(`Server Started on http://localhost:${port}`);
 });
