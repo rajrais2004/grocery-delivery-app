@@ -1,91 +1,116 @@
+# 🛒 Grocery Delivery App
 
-# Grocery Delivery Application
+A full-stack MERN grocery e-commerce platform with a customer-facing storefront, an admin dashboard for inventory and order management, and a Node.js/Express backend — all connected to a MongoDB database.
 
-## Overview
-The **Grocery Delivery Application** is a full-stack web application that allows users to browse grocery items, add them to their cart, and place orders for delivery. This project demonstrates an end-to-end e-commerce solution with authentication, real-time order tracking, and a user-friendly interface.
 ![menu page](https://github.com/user-attachments/assets/dc9cfd66-828a-4ac2-8b0a-469ee4d9e216)
-
 ![signup and login page](https://github.com/user-attachments/assets/69ed8171-5ca8-460b-959c-3db3e34ab116)
-
 ![cart page](https://github.com/user-attachments/assets/fda29103-abea-4947-9ef9-309068e7354a)
 
+---
+
 ## Features
-- User authentication (sign-up, login, logout)
-- Browse grocery categories and products
-- Add items to the cart and place orders
-- Order tracking and management
-- Admin panel for managing products and orders
-- Responsive design for a seamless user experience
+
+- User sign-up, login, and JWT-based authentication
+- Browse grocery products by category
+- Add to cart, manage quantities, and place orders
+- Real-time order tracking and status updates
+- Admin panel to add/remove products and manage orders
+- Responsive UI for both desktop and mobile
+
+---
 
 ## Tech Stack
-### Frontend:
-- React.js
-- CSS 
 
-### Backend:
-- Node.js with Express.js
-- MongoDB
-- JWT for authentication
+**Frontend:** React.js, CSS  
+**Backend:** Node.js, Express.js, REST APIs  
+**Database:** MongoDB (Mongoose)  
+**Auth:** JSON Web Tokens (JWT)  
+**Payments:** Stripe  
+**Tools:** Git, GitHub, VS Code, Postman
 
-## Installation
-### Prerequisites:
-Ensure you have the following installed:
-- Node.js
-- MongoDB (if using a local database)
+---
 
-### Steps to Run the Project:
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/shrutim250/Grocery-del-application.git
-   cd Grocery-del-application
-   ```
-2. Install dependencies for the backend:
-   ```sh
-   cd backend
-   npm install
-   ```
-3. Install dependencies for the frontend:
-   ```sh
-   cd ../frontend
-   npm install
-   ```
-4. Configure environment variables:
-   - Create a `.env` file in the `backend` folder and add necessary environment variables (e.g., database URI, JWT secret, etc.)
+## Project Structure
 
-5. Start the backend server:
-   ```sh
-   npm start
-   ```
-6. Start the frontend:
-   ```sh
-   npm start
-   ```
-7. Open the application in your browser at `http://localhost:3000`
+```
+grocery-delivery-app/
+├── Backend/        # Express server, REST APIs, MongoDB models
+├── frontend/       # React customer storefront
+└── admin/          # React admin dashboard
+```
 
-## API Endpoints (Backend)
-| Method | Endpoint            | Description                      |
-|--------|---------------------|----------------------------------|
-| GET    | `/api/products`     | Get all grocery products        |
-| POST   | `/api/auth/signup`  | User registration               |
-| POST   | `/api/auth/login`   | User login                      |
-| POST   | `/api/orders`       | Place a new order               |
-| GET    | `/api/orders/:id`   | Get order details               |
+---
 
-## Contributing
-1. Fork the repository.
-2. Create a new branch (`feature-branch`).
-3. Commit your changes.
-4. Push to the branch and create a pull request.
+## Getting Started
+
+### Prerequisites
+- Node.js installed
+- MongoDB (local or Atlas)
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/rajrais2004/grocery-delivery-app.git
+cd grocery-delivery-app
+```
+
+### 2. Setup Backend
+```bash
+cd Backend
+npm install
+```
+
+Create a `.env` file in the `Backend/` folder:
+```
+DB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+STRIPE_API_KEY=your_stripe_key
+PORT=4000
+```
+
+Start the backend server:
+```bash
+npm run server
+```
+
+### 3. Setup Frontend
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+### 4. Setup Admin Panel
+```bash
+cd ../admin
+npm install
+npm run dev
+```
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/user/register` | User registration |
+| POST | `/api/user/login` | User login |
+| GET | `/api/food/list` | Get all products |
+| POST | `/api/cart/add` | Add item to cart |
+| POST | `/api/order/place` | Place an order |
+| GET | `/api/order/userorders` | Get user orders |
+| GET | `/api/order/list` | Get all orders (admin) |
+| POST | `/api/order/status` | Update order status (admin) |
+
+---
+
+## Screenshots
+
+![admin add items](https://github.com/user-attachments/assets/5574bce3-f85b-45f7-9903-7cf4ac295975)
+![admin list](https://github.com/user-attachments/assets/ec39d64a-0b83-4749-9007-4ae92ffa5019)
+![screenshot](https://github.com/user-attachments/assets/04ce1c2b-4b12-4be7-a6a7-db9d8841136c)
+
+---
 
 ## License
-This project is licensed under the MIT License.
-![Screenshot 2024-07-16 172255](https://github.com/user-attachments/assets/04ce1c2b-4b12-4be7-a6a7-db9d8841136c)![admin page-add items](https://github.com/user-attachments/assets/5574bce3-f85b-45f7-9903-7cf4ac295975)![admin page-list](https://github.com/user-attachments/assets/ec39d64a-0b83-4749-9007-4ae92ffa5019)
 
-
-
-
-
-
-To open the frontend folder use npm run dev
-To open the backend server use npm run server
-To open the admin server use npm run dev
+MIT License
